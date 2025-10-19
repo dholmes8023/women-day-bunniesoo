@@ -1,0 +1,68 @@
+:root{
+  --bg: #0b0f1a;
+  --bg-2: #0f1324;
+  --fg: #e8ecff;
+  --muted: #9aa6d1;
+  --accent-1: #8a7bff;
+  --accent-2: #ff7bd7;
+  --accent-3: #6af3ff;
+  --glass: rgba(255,255,255,0.06);
+  --border: rgba(255,255,255,0.12);
+  --shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  color:var(--fg);
+  background: radial-gradient(1200px 800px at 10% 0%, #151a33 0%, var(--bg) 40%, #080b16 100%);
+  overflow-x:hidden;
+}
+#bg-stars, #bg-wishes{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  display:block;
+}
+body::after{
+  content:"";
+  position:fixed; inset:0;
+  background: radial-gradient(60% 60% at 50% 10%, transparent 0 60%, rgba(0,0,0,0.55) 100%);
+  pointer-events:none; z-index:-1;
+}
+.container{
+  width:min(1000px, 92vw);
+  margin:0 auto;
+  padding: clamp(16px, 4vw, 28px);
+}
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+  position:relative; overflow:hidden;
+}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, rgba(138,123,255,.2), rgba(255,123,215,.2));
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  text-decoration:none; color:var(--fg);
+  backdrop-filter: blur(6px);
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.btn:hover{ transform: translateY(-1px); box-shadow: var(--shadow); }
+.gradient-text{
+  background: linear-gradient(92deg, var(--accent-1), var(--accent-2) 40%, var(--accent-3) 80%);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 4px 24px rgba(138,123,255,.25));
+}
+.ring-wrap svg text{
+  font-weight: 700;
+  letter-spacing: .4px;
+}
+footer{ color:var(--muted); font-size:13px; padding: 26px 0 40px; text-align:center; }

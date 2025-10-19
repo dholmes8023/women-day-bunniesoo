@@ -1,0 +1,105 @@
+/* ===== Special Upgrades: ring text, bunny hopper, gift modal ===== */
+:root{
+  --ring-size: clamp(160px, 36vw, 300px);
+  --accent: #ff7bd7;
+  --accent-2: #8a7bff;
+}
+
+/* Ring text container */
+.ring-wrap{
+  position: relative;
+  width: var(--ring-size);
+  height: var(--ring-size);
+  margin-inline: auto;
+  margin-top: 14px;
+  filter: drop-shadow(0 6px 24px rgba(0,0,0,.35));
+}
+.ring-wrap svg{
+  display:block;
+}
+.ring-wrap .center-emoji{
+  position:absolute; inset:0;
+  display:grid; place-items:center;
+  font-size: clamp(22px, 8vw, 40px);
+}
+
+/* Bunny hopper */
+.hopper{
+  position: fixed;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  width: clamp(80px, 16vw, 140px);
+  opacity: .95;
+  pointer-events: none;
+  z-index: 10;
+  animation: hopY 1.8s ease-in-out infinite;
+}
+@keyframes hopY{
+  0%,100%{ transform: translate(-50%, 0); }
+  50%{ transform: translate(-50%, -16px); }
+}
+.hopper svg{
+  display:block; width:100%; height:auto;
+  filter: drop-shadow(0 8px 22px rgba(0,0,0,.35));
+}
+
+/* Floating gift button */
+.gift-fab{
+  position: fixed;
+  right: 14px; bottom: 14px;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 56px; height: 56px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.22);
+  background: radial-gradient(120px 120px at 40% 30%, rgba(255,255,255,.18), rgba(255,255,255,.08));
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  cursor: pointer; z-index: 50;
+}
+
+/* Modal */
+.modal-backdrop{
+  position: fixed; inset:0; z-index: 49;
+  background: rgba(0,0,20,.55);
+  display:none;
+}
+.modal{
+  position: fixed; inset:0; z-index: 50;
+  display:none; place-items: center;
+  padding: 20px;
+}
+.modal .card{
+  max-width: min(560px, 92vw);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+  padding: 16px;
+  color: #e8ecff;
+  box-shadow: 0 12px 34px rgba(0,0,0,.45);
+}
+.modal .card h3{
+  margin: 0 0 8px 0;
+}
+.modal .wishes{
+  display: grid; gap: 8px;
+  margin-top: 8px;
+}
+.modal .wish{
+  padding: 8px 10px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 999px;
+  background: rgba(255,255,255,.06);
+  font-size: 14px;
+}
+.modal .actions{
+  display:flex; justify-content:flex-end; gap:8px; margin-top:12px;
+}
+.modal .btn{
+  border:1px solid rgba(255,255,255,.22);
+  background: linear-gradient(135deg, rgba(138,123,255,.2), rgba(255,123,215,.2));
+  color:#e8ecff;
+  padding:8px 12px; border-radius:12px; cursor:pointer;
+}
+.show-modal .modal,
+.show-modal .modal-backdrop{ display: grid; }
