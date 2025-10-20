@@ -58,11 +58,16 @@
   cursor: pointer; z-index: 50;
 }
 
-.ring-wrap svg text {
+/* .ring-wrap svg text {
   font-family: 'Dancing Script', 'Great Vibes', cursive;
   font-weight: 600;
   fill: #ffe8f9;
   text-shadow: 0 0 10px rgba(255, 180, 230, 0.5);
+} */
+.ring-wrap svg text{
+  font-family: 'Quicksand', 'Poppins', 'Segoe UI', sans-serif;
+  font-weight: 500;
+  letter-spacing: .6px;
 }
 
 /* Modal */
