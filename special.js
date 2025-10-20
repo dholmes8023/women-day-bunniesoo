@@ -19,7 +19,7 @@ function injectRingText(){
         <textPath id="ringText" href="#circlePath" startOffset="50%" lengthAdjust="spacingAndGlyphs"></textPath>
       </text>
     </svg>
-    <div class="center-emoji">💐</div>
+    <div class="center-emoji">🌷</div>
   `;
 
   const target = document.querySelector('.hero') || document.querySelector('main') || document.body;
