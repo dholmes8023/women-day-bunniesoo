@@ -5,15 +5,15 @@ function injectRingText(){
   const ring = document.createElement('div');
   ring.className = 'ring-wrap';
   ring.innerHTML = `
-    <svg viewBox="0 0 100 100" aria-hidden="true" width="100%" height="100%">
+    <!-- viewBox nới ra 6 đơn vị mỗi phía để khỏi cắt chữ -->
+    <svg viewBox="-6 -6 112 112" aria-hidden="true" width="100%" height="100%">
       <defs>
-        <!-- Bắt đầu ở đỉnh và đặt chuẩn pathLength = 1000 -->
+        <!-- Giữ bắt đầu ở đỉnh, giảm R từ 42 xuống 40 để có khoảng hở -->
         <path id="circlePath"
-              d="M50,50 m 0,-42 a 42,42 0 1,1 0,84 a 42,42 0 1,1 0,-84"
+              d="M50,50 m 0,-40 a 40,40 0 1,1 0,80 a 40,40 0 1,1 0,-80"
               pathLength="1000" />
       </defs>
 
-      <!-- Căn giữa ở đỉnh, dàn khoảng cách để câu chạy kín 1 vòng -->
       <text fill="currentColor" text-anchor="middle">
         <textPath href="#circlePath"
                   startOffset="50%"
@@ -27,6 +27,7 @@ function injectRingText(){
   `;
   (document.querySelector('.hero') || document.querySelector('main') || document.body).prepend(ring);
 }
+
   // 2) Bunny Hopper (inline SVG)
   function injectBunny(){
     const wrap = document.createElement('div');
