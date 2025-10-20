@@ -1,25 +1,32 @@
 // ===== Special Upgrades: ring text, bunny hopper, gift modal =====
 (() => {
   // 1) Ring Text (SVG textPath)
-  function injectRingText(){
-    const ring = document.createElement('div');
-    ring.className = 'ring-wrap';
-    ring.innerHTML = `
-      <svg viewBox="0 0 100 100" aria-hidden="true">
-        <defs>
-          <path id="circlePath" d="M 50,50 m -42,0 a 42,42 0 1,1 84,0 a 42,42 0 1,1 -84,0" />
-        </defs>
-        <text font-size="7" fill="currentColor">
-          <textPath href="#circlePath">
-             Happy Vietnamese Women's Day • With love • Always be radiant ✨ •
-          </textPath>
-        </text>
-      </svg>
-      <div class="center-emoji">🌷</div>
-    `;
-    const target = document.querySelector('.hero') || document.querySelector('main') || document.body;
-    target && target.prepend(ring);
-  }
+function injectRingText(){
+  const ring = document.createElement('div');
+  ring.className = 'ring-wrap';
+  ring.innerHTML = `
+    <svg viewBox="0 0 100 100" aria-hidden="true" width="100%" height="100%">
+      <defs>
+        <!-- Bắt đầu ở đỉnh (0,-R) và đặt pathLength=1000 để làm mốc -->
+        <path id="circlePath"
+              d="M50,50 m 0,-42 a 42,42 0 1,1 0,84 a 42,42 0 1,1 0,-84"
+              pathLength="1000" />
+      </defs>
+
+      <!-- Căn giữa ở đỉnh -->
+      <text font-size="7" fill="currentColor" text-anchor="middle">
+        <textPath href="#circlePath"
+                  startOffset="50%"
+                  textLength="1000"
+                  lengthAdjust="spacingAndGlyphs">
+          Happy Vietnamese Women's Day • With love • Always be radiant ✨ •
+        </textPath>
+      </text>
+    </svg>
+    <div class="center-emoji">🌷</div>
+  `;
+  (document.querySelector('.hero') || document.querySelector('main') || document.body).prepend(ring);
+}
 
   // 2) Bunny Hopper (inline SVG)
   function injectBunny(){
