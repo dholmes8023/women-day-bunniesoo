@@ -64,11 +64,19 @@
   fill: #ffe8f9;
   text-shadow: 0 0 10px rgba(255, 180, 230, 0.5);
 } */
-.ring-wrap svg text{
+/* Font mềm, rõ và sáng vừa phải */
+.ring-wrap svg text {
   font-family: 'Quicksand', 'Poppins', 'Segoe UI', sans-serif;
   font-weight: 500;
-  letter-spacing: .6px;
+  letter-spacing: .4px;  /* đừng quá lớn để không chống lại textLength */
+  fill: #ffe8f6;
+  text-shadow: 0 0 8px rgba(255, 170, 220, .35);
 }
+
+/* (tuỳ chọn) Font-size tự co theo kích thước vòng */
+:root { --ring-size: clamp(160px, 36vw, 320px); }
+.ring-wrap { width: var(--ring-size); height: var(--ring-size); }
+.ring-wrap svg text { font-size: calc(var(--ring-size) / 14); } /* tinh chỉnh nếu cần */
 
 /* Modal */
 .modal-backdrop{
