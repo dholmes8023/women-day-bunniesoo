@@ -1,25 +1,47 @@
 // ===== Special Upgrades: ring text, bunny hopper, gift modal =====
 (() => {
   // 1) Ring Text (SVG textPath)
-  function injectRingText(){
-    const ring = document.createElement('div');
-    ring.className = 'ring-wrap';
-    ring.innerHTML = `
-      <svg viewBox="0 0 100 100" aria-hidden="true">
-        <defs>
-          <path id="circlePath" d="M 50,50 m -42,0 a 42,42 0 1,1 84,0 a 42,42 0 1,1 -84,0" />
-        </defs>
-        <text font-size="7" fill="currentColor">
-          <textPath href="#circlePath">
-             Happy Vietnamese Women's Day • With love • Always be radiant ✨ •
-          </textPath>
-        </text>
-      </svg>
-      <div class="center-emoji">🌷</div>
-    `;
-    const target = document.querySelector('.hero') || document.querySelector('main') || document.body;
-    target && target.prepend(ring);
-  }
+ // 1) Ring Text (SVG textPath) — always closed
+function injectRingText(){
+  const MESSAGE = "Happy Vietnamese Women's Day • With love • Always be radiant ✨ •";
+
+  const ring = document.createElement('div');
+  ring.className = 'ring-wrap';
+  ring.innerHTML = `
+    <svg viewBox="-6 -6 112 112" aria-hidden="true" width="100%" height="100%">
+      <defs>
+        <!-- Bắt đầu ở đỉnh (0,-R). Giảm R xuống 40 để có mép an toàn, tránh bị cắt. -->
+        <path id="circlePath"
+              d="M50,50 m 0,-40 a 40,40 0 1,1 0,80 a 40,40 0 1,1 0,-80"/>
+      </defs>
+      <text fill="currentColor" text-anchor="middle">
+        <!-- startOffset=50% để căn đỉnh; textLength sẽ được set động = độ dài thật của path -->
+        <textPath id="ringText" href="#circlePath" startOffset="50%" lengthAdjust="spacingAndGlyphs"></textPath>
+      </text>
+    </svg>
+    <div class="center-emoji">💐</div>
+  `;
+
+  const target = document.querySelector('.hero') || document.querySelector('main') || document.body;
+  if (!target) return;
+  target.prepend(ring);
+
+  // 🔒 Đặt text sau khi SVG đã gắn vào DOM để đo chính xác chiều dài path
+  const svg = ring.querySelector('svg');
+  const path = ring.querySelector('#circlePath');
+  const tp   = ring.querySelector('#ringText');
+
+  // Nội dung giữ nguyên, loại bỏ khoảng trắng thừa ở đầu/cuối
+  tp.textContent = MESSAGE.trim();
+
+  // Đo độ dài path thực tế, gán cho textLength ⇒ khít kín 100%
+  const L = path.getTotalLength();          // ví dụ ~251.327 cho R=40
+  tp.setAttribute('textLength', L);
+
+  // Nếu vẫn thấy hở rất nhỏ trên một số máy Android (do làm tròn), nới +0.5%:
+  // tp.setAttribute('textLength', L * 1.005);
+}
+
 
   // 2) Bunny Hopper (inline SVG)
   function injectBunny(){
