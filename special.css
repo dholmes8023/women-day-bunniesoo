@@ -58,26 +58,12 @@
   cursor: pointer; z-index: 50;
 }
 
-/* .ring-wrap svg text {
+.ring-wrap svg text {
   font-family: 'Dancing Script', 'Great Vibes', cursive;
   font-weight: 600;
   fill: #ffe8f9;
   text-shadow: 0 0 10px rgba(255, 180, 230, 0.5);
-} */
-/* Font mềm, rõ và sáng vừa phải */
-.ring-wrap,
-.ring-wrap svg { overflow: visible; }   /* tránh bị crop bởi viewport */
-.ring-wrap svg text {
-  font-family: 'Quicksand','Poppins',sans-serif;
-  font-weight: 500;
-  letter-spacing: .4px;
 }
-
-/* Scale chữ theo kích thước vòng để không quá to trên mobile */
-:root { --ring-size: clamp(160px, 36vw, 320px); }
-.ring-wrap { width: var(--ring-size); height: var(--ring-size); }
-.ring-wrap svg text { font-size: calc(var(--ring-size) / 14); }
-
 
 /* Modal */
 .modal-backdrop{
